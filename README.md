@@ -1,2 +1,8 @@
-# QuantumNeuron
-QuantumNeuron is a repository that embodies the cutting-edge fusion of quantum computing and artificial intelligence. The name symbolizes a futuristic framework where the power of quantum mechanics is harnessed to develop intelligent systems that mimic human neural networks but surpass their limitations.
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
