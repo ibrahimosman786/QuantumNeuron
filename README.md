@@ -80,6 +80,11 @@ QuantumNeuron/
 - 🔍 TensorFlow, PyTorch
 - ⚛️ Qiskit (Quantum Computing Framework)
 - 🌐 FastAPI (for API Development)
+- 🌟 JavaScript, Tailwind CSS
+- 🟢 Node.js
+- 🍃 MongoDB
+- 🔥 Redis
+
 
 ---
 
@@ -105,15 +110,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For any questions, feel free to reach out:
 
-- **Email**: yourname@example.com
-- **Twitter**: [@YourHandle](https://twitter.com/YourHandle)
-- **LinkedIn**: [Your Profile](https://linkedin.com/in/YourProfile)
+- **Email**: ibrahimosman1040@gmail.com
+- **Instagram**: [@ibrahimosman45](https://www.instagram.com/ibrahimosman45/)
+- **LinkedIn**: [Ibrahim Osman](https://ca.linkedin.com/in/ibrahim-osman-898b53241)
 
 ---
 
 ### ⭐ **Show Your Support**
 
-If you like this project, consider giving it a ⭐ on [GitHub](https://github.com/YourUsername/QuantumNeuron)! It means a lot to us. 💖
+If you like this project, consider giving it a ⭐ on [GitHub](https://github.com/ibrahimosman786/QuantumNeuron)! It means a lot to us. 💖
 
 ---
 
