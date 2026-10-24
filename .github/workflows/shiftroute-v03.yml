@@ -1,0 +1,69 @@
+name: ShiftRoute-RL v0.3 policy-shift research
+on:
+  push:
+    branches: [research/shiftroute-rl-mvp-20261023]
+    paths:
+      - 'research/shiftroute-rl/src/shiftroute_rl/risk_budget_v03.py'
+      - 'research/shiftroute-rl/src/shiftroute_rl/proof_stress_v03.py'
+      - 'research/shiftroute-rl/tests/test_risk_budget_v03.py'
+      - '.github/workflows/shiftroute-v03.yml'
+  workflow_dispatch:
+jobs:
+  full-v03-evaluation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU scientific dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy
+          python -m pip install -e research/shiftroute-rl
+      - name: All tests
+        run: |
+          cd research/shiftroute-rl
+          python -m unittest discover -s tests -v
+      - name: Run five-seed policy-shift experiment
+        env:
+          OMP_NUM_THREADS: '2'
+        run: |
+          cd research/shiftroute-rl
+          python -m shiftroute_rl.risk_budget_v03 --n 3600 --out results/v03/cloud_experiment.json
+          python -m shiftroute_rl.proof_stress_v03 --n 3600 --out results/v03/cloud_proof_stress.json
+      - name: Validate paired zero-regression result without implying general safety
+        run: |
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          root=Path('research/shiftroute-rl/results/v03')
+          d=json.loads((root/'cloud_experiment.json').read_text())
+          assert len(d['records'])==150,len(d['records'])
+          r=d['records']
+          for row in r:
+              assert math.isfinite(row['unsafe_executed_fraction'])
+              assert math.isfinite(row['review_cost_per_action'])
+          for regime in ['stable','policy-shift','joint-shift']:
+              for seed in [41,57,73,89,101]:
+                  for sens in [1,.94]:
+                      pair=[x for x in r if x['regime']==regime and x['stream_seed']==seed and x['reviewer_sensitivity']==sens]
+                      all_e=next(x for x in pair if x['mode']=='all')
+                      proof=next(x for x in pair if x['mode']=='proof')
+                      assert all_e['unsafe_executed_count']==proof['unsafe_executed_count']
+                      assert proof['review_cost_per_action']<all_e['review_cost_per_action']
+          s=json.loads((root/'cloud_proof_stress.json').read_text())
+          assert len(s['records'])==40
+          print('Cloud v0.3 simulation checks passed: 150 route comparisons, 40 proof-stress runs')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shiftroute-v03-policy-shift-results
+          path: |
+            research/shiftroute-rl/results/v03/cloud_experiment.json
+            research/shiftroute-rl/results/v03/cloud_proof_stress.json
+          retention-days: 14
+          if-no-files-found: warn

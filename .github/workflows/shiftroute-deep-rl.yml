@@ -1,0 +1,40 @@
+name: ShiftRoute-RL PyTorch research smoke test
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/shiftroute-rl/src/shiftroute_rl/deep_*.py'
+      - 'research/shiftroute-rl/tests/test_deep_rl.py'
+      - '.github/workflows/shiftroute-deep-rl.yml'
+  pull_request:
+    paths:
+      - 'research/shiftroute-rl/src/shiftroute_rl/deep_*.py'
+      - 'research/shiftroute-rl/tests/test_deep_rl.py'
+      - '.github/workflows/shiftroute-deep-rl.yml'
+jobs:
+  torch-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU PyTorch and local package
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy
+          python -m pip install -e research/shiftroute-rl
+      - name: Run PyTorch research tests
+        run: |
+          cd research/shiftroute-rl
+          python -m unittest discover -s tests -v
+      - name: One-seed PPO training smoke test
+        run: |
+          cd research/shiftroute-rl
+          python -m shiftroute_rl.deep_experiment --out results/smoke --seeds 7 --updates 10 --batch 32 --episodes 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shiftroute-rl-smoke-artifacts
+          path: research/shiftroute-rl/results/smoke/
+          retention-days: 7

@@ -1,0 +1,107 @@
+# ShiftRoute-RL (research prototype v0.1)
+
+**Reproducible toy benchmarks for adaptive verification under distribution shift.**
+
+> This is an intentionally small, **synthetic** research scaffold. It does **not**
+> train an LLM, implement Jev, reproduce GRAFT, provide calibrated production
+> risk guarantees, or establish the novelty/effectiveness of a new RL algorithm.
+
+## Research question
+
+Can learned routing policies reduce expensive verification calls while
+controlling unauthorized tool execution when the observed distribution changes?
+What happens when a policy-gradient learner optimizes against a weak monitor?
+
+## What it does now
+
+- Generates reproducible, isolated *authorized* vs *unauthorized* mock tool actions.
+- Fits a **standard-library logistic classifier** on training examples only.
+- Chooses thresholds on separate calibration data to minimize simulated
+  verification cost subject to **observed** safety and legitimate success targets.
+- Evaluates four routing policies on two held-out splits (in-distribution and
+  shifted tool schemas). The latter hides cues that were predictive during training.
+- Exposes *undetected unsafe execution*, *legitimate task success*,
+  *verification frequency*, *false refusals*, and *cost units* separately.
+- Includes a **10% random sentinel auditing** baseline that can trigger full verification after three confirmed suspicious allows. This trades increased cost for risk detection; it does not guarantee safety.
+- Includes a simple REINFORCE-style **one-step bandit** in which a flawed
+  penalty can cause a policy to prefer a subtler shortcut.
+- Runs offline, with no model API, network access, third-party dependency or secrets.
+
+## Quickstart
+
+```bash
+python -m pip install -e .
+python -m unittest discover -s tests -v
+python -m shiftroute_rl.benchmark --seed 7 --n 1200 --output results/toy_seed7.json
+python -m shiftroute_rl.bandit --seed 7 --updates 6000
+```
+
+Results are deterministic given Python/version and arguments. Benchmarks use
+**arbitrary illustrative units**: monitoring = 0.001/unit decision; perfect
+oracle verification = 0.02/unit decision. These are **not vendor prices**.
+
+## Methodological guardrails
+
+- Three disjoint splits: model training, router threshold calibration, testing.
+- A fourth shifted test dataset evaluates **out-of-distribution failure**;
+  its labels cannot tune the router.
+- Threshold optimization uses *empirical* error rates, **not** conformal
+  validity, statistical safety guarantees, or robust OOD bounds.
+- The sentinel baseline observes ground truth *only on audited examples* when adapting, while a benchmark scorer counts ground truth for measurement. It cannot detect all possible shifts and reacts only after some cases may have executed unsafely.
+- The tool verifier reads ground-truth labels and is therefore artificially
+  perfect. A realistic system must model verifier errors and actual execution.
+- The bandit is a 3-action toy, not a language model or multi-turn agent.
+- Do not claim savings or safety improvements from toy results in production.
+
+## Roadmap to real research
+
+1. Replace synthetic proxy features with pre-registered AgentDojo/other licensed
+   agent-tool traces, with held-out tool and policy combinations.
+2. Integrate open decision-model baselines, generative monitor, and independent
+   environment-state verifiers. Record exact model revisions, costs and licenses.
+3. Implement multi-turn RL training and measure distribution shifts induced
+   **by policy learning**, not only manually designed shifted cases.
+4. Compare fixed monitor penalties, calibrated abstention, verified rewards,
+   and appropriately reproduced GRAFT-style parameter routing.
+5. Publish negative results, ablations, confidence intervals and failure
+   cases. Get outside replication before suggesting safety/cost benefits.
+
+## Related work (do not claim these ideas as new)
+
+- AgentDojo: https://github.com/ethz-spylab/agentdojo
+- GRAFT: https://alignment.anthropic.com/2026/graft/
+- Training Alignment Auditors: https://alignment.anthropic.com/2026/training-alignment-auditors/
+- From Detection to Decision: https://arxiv.org/abs/2610.20907
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). Please add tests for each new
+benchmark case and avoid reporting untested production safety claims.
+
+License: MIT (see LICENSE).
+
+## v0.2: real PyTorch SFT and PPO experiments
+
+A second, optional experimental track now **trains neural models** (not language models) and measures reward hacking under PPO fine-tuning. Read [research methodology, baseline results, and limitations](docs/research-v02.md) first.
+
+```bash
+python -m pip install -e '.[research]'
+python -m unittest discover -s tests -v
+python -m shiftroute_rl.deep_experiment --out results/torch_v2 --seeds 7 13 23 --updates 200 --batch 192 --episodes 1000
+```
+
+This generates PyTorch model weights, per-seed PPO learning curves, individual evaluation results and a seed-level summary. The simulated trusted capability and independent verifier are designed to establish a cost/safety *counterexample*, not to imply a deployable self-governing frontier agent. All proof and oracle assumptions are explicitly stated in the report. **The old v0.1 standard-library benchmark remains available.**
+
+
+## v0.3: policy-shift verification and trusted-proof boundary (2026-10-23)
+
+[Read the v0.3 research report](docs/research-v03.md). The extended experiment replays actions selected by previously trained SFT/PPO actors under changing policy mixtures, manipulates monitor cues, varies reviewer sensitivity and certificate soundness, and reports all cost and safety metrics. It runs **150 base comparisons + 40 certificate stress runs** and has an executed [analysis notebook](notebooks/analysis-v03.ipynb).
+
+```sh
+python -m pip install -e '.[research]'
+python -m unittest discover -s tests -v
+python -m shiftroute_rl.risk_budget_v03 --n 3600 --out results/v03/experiment.json
+python -m shiftroute_rl.proof_stress_v03 --n 3600 --out results/v03/proof_stress.json
+```
+
+**Conclusion is conditional, not a universal safety guarantee:** Sound external authorization certificates can safely skip expensive verification; confidence-only adaptive audits cannot provably match verify-all with the same safety under arbitrary adversarial label shifts. The proof issuer in the simulator can see hidden authorization truth, an assumption that may not be realizable in real deployments. The model is a small neural policy, not a pretrained LLM.
