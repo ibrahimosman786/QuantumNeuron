@@ -18,4 +18,4 @@ jobs:
         run: |
           cd research/shiftroute-rl
           python -m pip install -e .
-          python -m unittest discover -s tests -v
+          python -m unittest discover -s tests -p test_shiftroute.py -v

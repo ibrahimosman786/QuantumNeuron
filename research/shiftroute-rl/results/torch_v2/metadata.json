@@ -1,0 +1,56 @@
+{
+  "python": "3.13.5",
+  "torch": "2.10.0+cpu",
+  "numpy": "2.3.5",
+  "hardware": "CPU only; no external model weights or API",
+  "method": "SFT initialized PPO (clipped actor-critic), MLP binary monitor, synthetic 6-step episodes",
+  "synthetic_only": true,
+  "configs": [
+    {
+      "seed": 7,
+      "monitor_samples": 12000,
+      "monitor_epochs": 15,
+      "sft_steps": 220,
+      "ppo_updates": 200,
+      "batch_episodes": 192,
+      "learning_rate": 0.0015,
+      "clip_eps": 0.2,
+      "entropy_coeff": 0.015,
+      "gamma": 0.96,
+      "cert_rate": 0.62
+    },
+    {
+      "seed": 13,
+      "monitor_samples": 12000,
+      "monitor_epochs": 15,
+      "sft_steps": 220,
+      "ppo_updates": 200,
+      "batch_episodes": 192,
+      "learning_rate": 0.0015,
+      "clip_eps": 0.2,
+      "entropy_coeff": 0.015,
+      "gamma": 0.96,
+      "cert_rate": 0.62
+    },
+    {
+      "seed": 23,
+      "monitor_samples": 12000,
+      "monitor_epochs": 15,
+      "sft_steps": 220,
+      "ppo_updates": 200,
+      "batch_episodes": 192,
+      "learning_rate": 0.0015,
+      "clip_eps": 0.2,
+      "entropy_coeff": 0.015,
+      "gamma": 0.96,
+      "cert_rate": 0.62
+    }
+  ],
+  "method_limitations": [
+    "Oracle uses simulator ground truth",
+    "Capabilities unforgeable by construction",
+    "Model is small feedforward actor-critic, NOT an LLM",
+    "Held-out distribution shift is intentionally constructed",
+    "No real financial cost or security guarantees are measured"
+  ]
+}

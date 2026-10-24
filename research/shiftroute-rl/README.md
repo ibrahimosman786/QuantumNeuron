@@ -79,3 +79,15 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Please add tests for each new
 benchmark case and avoid reporting untested production safety claims.
 
 License: MIT (see LICENSE).
+
+## v0.2: real PyTorch SFT and PPO experiments
+
+A second, optional experimental track now **trains neural models** (not language models) and measures reward hacking under PPO fine-tuning. Read [research methodology, baseline results, and limitations](docs/research-v02.md) first.
+
+```bash
+python -m pip install -e '.[research]'
+python -m unittest discover -s tests -v
+python -m shiftroute_rl.deep_experiment --out results/torch_v2 --seeds 7 13 23 --updates 200 --batch 192 --episodes 1000
+```
+
+This generates PyTorch model weights, per-seed PPO learning curves, individual evaluation results and a seed-level summary. The simulated trusted capability and independent verifier are designed to establish a cost/safety *counterexample*, not to imply a deployable self-governing frontier agent. All proof and oracle assumptions are explicitly stated in the report. **The old v0.1 standard-library benchmark remains available.**

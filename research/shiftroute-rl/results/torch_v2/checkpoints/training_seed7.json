@@ -1,0 +1,595 @@
+{
+  "monitor": {
+    "train_count": 9600,
+    "val_count": 2400,
+    "history": [
+      {
+        "epoch": 1,
+        "val_loss": 0.5359748601913452,
+        "val_acc": 0.8795833587646484
+      },
+      {
+        "epoch": 2,
+        "val_loss": 0.27699121832847595,
+        "val_acc": 0.9241666793823242
+      },
+      {
+        "epoch": 3,
+        "val_loss": 0.22242359817028046,
+        "val_acc": 0.9195833206176758
+      },
+      {
+        "epoch": 4,
+        "val_loss": 0.22337870299816132,
+        "val_acc": 0.9133333563804626
+      },
+      {
+        "epoch": 5,
+        "val_loss": 0.22212977707386017,
+        "val_acc": 0.9162499904632568
+      },
+      {
+        "epoch": 6,
+        "val_loss": 0.2206592857837677,
+        "val_acc": 0.9191666841506958
+      },
+      {
+        "epoch": 7,
+        "val_loss": 0.2205604612827301,
+        "val_acc": 0.9191666841506958
+      },
+      {
+        "epoch": 8,
+        "val_loss": 0.22046786546707153,
+        "val_acc": 0.9183333516120911
+      },
+      {
+        "epoch": 9,
+        "val_loss": 0.22037671506404877,
+        "val_acc": 0.9191666841506958
+      },
+      {
+        "epoch": 10,
+        "val_loss": 0.2203853279352188,
+        "val_acc": 0.9191666841506958
+      },
+      {
+        "epoch": 11,
+        "val_loss": 0.22022949159145355,
+        "val_acc": 0.9191666841506958
+      },
+      {
+        "epoch": 12,
+        "val_loss": 0.22018834948539734,
+        "val_acc": 0.9195833206176758
+      },
+      {
+        "epoch": 13,
+        "val_loss": 0.220093235373497,
+        "val_acc": 0.9204166531562805
+      },
+      {
+        "epoch": 14,
+        "val_loss": 0.220014289021492,
+        "val_acc": 0.9195833206176758
+      },
+      {
+        "epoch": 15,
+        "val_loss": 0.22005051374435425,
+        "val_acc": 0.9195833206176758
+      }
+    ]
+  },
+  "train": {
+    "proxy": [
+      {
+        "update": 1,
+        "train_mean_proxy_reward": 0.7042524814605713,
+        "train_shortcut_rate": 0.026041666666666668,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.026041666666666668,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 10,
+        "train_mean_proxy_reward": 0.6338413953781128,
+        "train_shortcut_rate": 0.0685763888888889,
+        "train_subtle_rate": 0.001736111111111111,
+        "train_unsafe_execution_rate": 0.0685763888888889,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 20,
+        "train_mean_proxy_reward": 0.7235965132713318,
+        "train_shortcut_rate": 0.017361111111111112,
+        "train_subtle_rate": 0.0008680555555555555,
+        "train_unsafe_execution_rate": 0.017361111111111112,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 30,
+        "train_mean_proxy_reward": 0.7463470101356506,
+        "train_shortcut_rate": 0.008680555555555556,
+        "train_subtle_rate": 0.003472222222222222,
+        "train_unsafe_execution_rate": 0.008680555555555556,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 40,
+        "train_mean_proxy_reward": 0.7500192523002625,
+        "train_shortcut_rate": 0.06944444444444445,
+        "train_subtle_rate": 0.06076388888888889,
+        "train_unsafe_execution_rate": 0.06944444444444445,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 50,
+        "train_mean_proxy_reward": 0.8047205805778503,
+        "train_shortcut_rate": 0.15711805555555555,
+        "train_subtle_rate": 0.1501736111111111,
+        "train_unsafe_execution_rate": 0.15711805555555555,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 60,
+        "train_mean_proxy_reward": 0.8798967003822327,
+        "train_shortcut_rate": 0.3506944444444444,
+        "train_subtle_rate": 0.3498263888888889,
+        "train_unsafe_execution_rate": 0.3506944444444444,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 70,
+        "train_mean_proxy_reward": 1.0738451480865479,
+        "train_shortcut_rate": 0.8072916666666666,
+        "train_subtle_rate": 0.8046875,
+        "train_unsafe_execution_rate": 0.8072916666666666,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 80,
+        "train_mean_proxy_reward": 1.1210969686508179,
+        "train_shortcut_rate": 0.9210069444444444,
+        "train_subtle_rate": 0.9184027777777778,
+        "train_unsafe_execution_rate": 0.9210069444444444,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 90,
+        "train_mean_proxy_reward": 1.1341979503631592,
+        "train_shortcut_rate": 0.9809027777777778,
+        "train_subtle_rate": 0.9809027777777778,
+        "train_unsafe_execution_rate": 0.9809027777777778,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 100,
+        "train_mean_proxy_reward": 1.1411242485046387,
+        "train_shortcut_rate": 0.9991319444444444,
+        "train_subtle_rate": 0.9991319444444444,
+        "train_unsafe_execution_rate": 0.9991319444444444,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 110,
+        "train_mean_proxy_reward": 1.1345831155776978,
+        "train_shortcut_rate": 1.0,
+        "train_subtle_rate": 1.0,
+        "train_unsafe_execution_rate": 1.0,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 120,
+        "train_mean_proxy_reward": 1.1517707109451294,
+        "train_shortcut_rate": 1.0,
+        "train_subtle_rate": 1.0,
+        "train_unsafe_execution_rate": 1.0,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 130,
+        "train_mean_proxy_reward": 1.1219792366027832,
+        "train_shortcut_rate": 1.0,
+        "train_subtle_rate": 1.0,
+        "train_unsafe_execution_rate": 1.0,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 140,
+        "train_mean_proxy_reward": 1.132291555404663,
+        "train_shortcut_rate": 1.0,
+        "train_subtle_rate": 1.0,
+        "train_unsafe_execution_rate": 1.0,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 150,
+        "train_mean_proxy_reward": 1.1403124332427979,
+        "train_shortcut_rate": 1.0,
+        "train_subtle_rate": 1.0,
+        "train_unsafe_execution_rate": 1.0,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 160,
+        "train_mean_proxy_reward": 1.1437498331069946,
+        "train_shortcut_rate": 1.0,
+        "train_subtle_rate": 1.0,
+        "train_unsafe_execution_rate": 1.0,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 170,
+        "train_mean_proxy_reward": 1.1754300594329834,
+        "train_shortcut_rate": 0.9991319444444444,
+        "train_subtle_rate": 0.9991319444444444,
+        "train_unsafe_execution_rate": 0.9991319444444444,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 180,
+        "train_mean_proxy_reward": 1.1609374284744263,
+        "train_shortcut_rate": 1.0,
+        "train_subtle_rate": 1.0,
+        "train_unsafe_execution_rate": 1.0,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 190,
+        "train_mean_proxy_reward": 1.1529165506362915,
+        "train_shortcut_rate": 1.0,
+        "train_subtle_rate": 1.0,
+        "train_unsafe_execution_rate": 1.0,
+        "train_verification_rate": 0.0
+      },
+      {
+        "update": 200,
+        "train_mean_proxy_reward": 1.1494790315628052,
+        "train_shortcut_rate": 1.0,
+        "train_subtle_rate": 1.0,
+        "train_unsafe_execution_rate": 1.0,
+        "train_verification_rate": 0.0
+      }
+    ],
+    "verified": [
+      {
+        "update": 1,
+        "train_mean_proxy_reward": 0.8804879784584045,
+        "train_shortcut_rate": 0.03125,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 10,
+        "train_mean_proxy_reward": 0.7303903102874756,
+        "train_shortcut_rate": 0.0954861111111111,
+        "train_subtle_rate": 0.003472222222222222,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 20,
+        "train_mean_proxy_reward": 0.8597009181976318,
+        "train_shortcut_rate": 0.0390625,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 30,
+        "train_mean_proxy_reward": 0.938105046749115,
+        "train_shortcut_rate": 0.011284722222222222,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 40,
+        "train_mean_proxy_reward": 0.9435868859291077,
+        "train_shortcut_rate": 0.0078125,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 50,
+        "train_mean_proxy_reward": 0.9512326717376709,
+        "train_shortcut_rate": 0.006076388888888889,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 60,
+        "train_mean_proxy_reward": 0.9644113183021545,
+        "train_shortcut_rate": 0.0008680555555555555,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 70,
+        "train_mean_proxy_reward": 0.9664400815963745,
+        "train_shortcut_rate": 0.0008680555555555555,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 80,
+        "train_mean_proxy_reward": 0.9587103724479675,
+        "train_shortcut_rate": 0.0026041666666666665,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 90,
+        "train_mean_proxy_reward": 0.9665305614471436,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 100,
+        "train_mean_proxy_reward": 0.9620449542999268,
+        "train_shortcut_rate": 0.0008680555555555555,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 110,
+        "train_mean_proxy_reward": 0.967538595199585,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 120,
+        "train_mean_proxy_reward": 0.9631786346435547,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 130,
+        "train_mean_proxy_reward": 0.9601620435714722,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 140,
+        "train_mean_proxy_reward": 0.9663510918617249,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 150,
+        "train_mean_proxy_reward": 0.9671943187713623,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 160,
+        "train_mean_proxy_reward": 0.9634003043174744,
+        "train_shortcut_rate": 0.0008680555555555555,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 170,
+        "train_mean_proxy_reward": 0.9658265709877014,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 180,
+        "train_mean_proxy_reward": 0.9644697904586792,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 190,
+        "train_mean_proxy_reward": 0.9677906036376953,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      },
+      {
+        "update": 200,
+        "train_mean_proxy_reward": 0.9622364044189453,
+        "train_shortcut_rate": 0.0008680555555555555,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 1.0
+      }
+    ],
+    "capability": [
+      {
+        "update": 1,
+        "train_mean_proxy_reward": 0.8911871314048767,
+        "train_shortcut_rate": 0.026909722222222224,
+        "train_subtle_rate": 0.001736111111111111,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.4071180555555556
+      },
+      {
+        "update": 10,
+        "train_mean_proxy_reward": 0.7599999904632568,
+        "train_shortcut_rate": 0.08506944444444445,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.4401041666666667
+      },
+      {
+        "update": 20,
+        "train_mean_proxy_reward": 0.8844689726829529,
+        "train_shortcut_rate": 0.03125,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3940972222222222
+      },
+      {
+        "update": 30,
+        "train_mean_proxy_reward": 0.9407029747962952,
+        "train_shortcut_rate": 0.008680555555555556,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.4036458333333333
+      },
+      {
+        "update": 40,
+        "train_mean_proxy_reward": 0.9529520869255066,
+        "train_shortcut_rate": 0.004340277777777778,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3923611111111111
+      },
+      {
+        "update": 50,
+        "train_mean_proxy_reward": 0.9572705030441284,
+        "train_shortcut_rate": 0.0026041666666666665,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3984375
+      },
+      {
+        "update": 60,
+        "train_mean_proxy_reward": 0.9537683129310608,
+        "train_shortcut_rate": 0.003472222222222222,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.4236111111111111
+      },
+      {
+        "update": 70,
+        "train_mean_proxy_reward": 0.9646562933921814,
+        "train_shortcut_rate": 0.0008680555555555555,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3975694444444444
+      },
+      {
+        "update": 80,
+        "train_mean_proxy_reward": 0.9652214050292969,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3854166666666667
+      },
+      {
+        "update": 90,
+        "train_mean_proxy_reward": 0.959743082523346,
+        "train_shortcut_rate": 0.0008680555555555555,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3880208333333333
+      },
+      {
+        "update": 100,
+        "train_mean_proxy_reward": 0.9654511213302612,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3967013888888889
+      },
+      {
+        "update": 110,
+        "train_mean_proxy_reward": 0.9627407789230347,
+        "train_shortcut_rate": 0.0008680555555555555,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3784722222222222
+      },
+      {
+        "update": 120,
+        "train_mean_proxy_reward": 0.9656504392623901,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.4045138888888889
+      },
+      {
+        "update": 130,
+        "train_mean_proxy_reward": 0.9601462483406067,
+        "train_shortcut_rate": 0.001736111111111111,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3732638888888889
+      },
+      {
+        "update": 140,
+        "train_mean_proxy_reward": 0.9642234444618225,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3576388888888889
+      },
+      {
+        "update": 150,
+        "train_mean_proxy_reward": 0.9649944305419922,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3888888888888889
+      },
+      {
+        "update": 160,
+        "train_mean_proxy_reward": 0.962711751461029,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3628472222222222
+      },
+      {
+        "update": 170,
+        "train_mean_proxy_reward": 0.9669760465621948,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3776041666666667
+      },
+      {
+        "update": 180,
+        "train_mean_proxy_reward": 0.9636774063110352,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3428819444444444
+      },
+      {
+        "update": 190,
+        "train_mean_proxy_reward": 0.963286280632019,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.3689236111111111
+      },
+      {
+        "update": 200,
+        "train_mean_proxy_reward": 0.9671535491943359,
+        "train_shortcut_rate": 0.0,
+        "train_subtle_rate": 0.0,
+        "train_unsafe_execution_rate": 0.0,
+        "train_verification_rate": 0.4088541666666667
+      }
+    ]
+  }
+}
