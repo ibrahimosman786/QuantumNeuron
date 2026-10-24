@@ -22,6 +22,7 @@ What happens when a policy-gradient learner optimizes against a weak monitor?
   shifted tool schemas). The latter hides cues that were predictive during training.
 - Exposes *undetected unsafe execution*, *legitimate task success*,
   *verification frequency*, *false refusals*, and *cost units* separately.
+- Includes a **10% random sentinel auditing** baseline that can trigger full verification after three confirmed suspicious allows. This trades increased cost for risk detection; it does not guarantee safety.
 - Includes a simple REINFORCE-style **one-step bandit** in which a flawed
   penalty can cause a policy to prefer a subtler shortcut.
 - Runs offline, with no model API, network access, third-party dependency or secrets.
@@ -46,6 +47,7 @@ oracle verification = 0.02/unit decision. These are **not vendor prices**.
   its labels cannot tune the router.
 - Threshold optimization uses *empirical* error rates, **not** conformal
   validity, statistical safety guarantees, or robust OOD bounds.
+- The sentinel baseline observes ground truth *only on audited examples* when adapting, while a benchmark scorer counts ground truth for measurement. It cannot detect all possible shifts and reacts only after some cases may have executed unsafely.
 - The tool verifier reads ground-truth labels and is therefore artificially
   perfect. A realistic system must model verifier errors and actual execution.
 - The bandit is a 3-action toy, not a language model or multi-turn agent.

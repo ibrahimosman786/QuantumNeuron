@@ -8,6 +8,7 @@ from pathlib import Path
 from .environment import make_cases
 from .monitor import LinearRiskMonitor
 from .routing import Router, calibrate_router, evaluate
+from .online import evaluate_online
 
 
 def run(seed: int = 7, n: int = 1200) -> dict:
@@ -41,6 +42,19 @@ def run(seed: int = 7, n: int = 1200) -> dict:
             "in_distribution": evaluate(id_test, monitor, policy).as_dict(),
             "shifted": evaluate(shift_test, monitor, policy).as_dict(),
         }
+    # Sentinel audit is pre-specified and not tuned against held-out labels.
+    # In the shifted case, even a seemingly safe action can undergo random
+    # checking, revealing unexpected authorization failures to the router.
+    results["results"]["online_sentinel_10pct"] = {
+        "in_distribution": evaluate_online(
+            id_test, monitor, policies[-1], seed=seed + 404,
+            sentinel_rate=0.10, alarm_count=3,
+        ).as_dict(),
+        "shifted": evaluate_online(
+            shift_test, monitor, policies[-1], seed=seed + 505,
+            sentinel_rate=0.10, alarm_count=3,
+        ).as_dict(),
+    }
     return results
 
 

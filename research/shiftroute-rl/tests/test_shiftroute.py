@@ -5,6 +5,7 @@ from shiftroute_rl.bandit import train
 from shiftroute_rl.benchmark import run
 from shiftroute_rl.environment import make_cases
 from shiftroute_rl.monitor import LinearRiskMonitor
+from shiftroute_rl.online import evaluate_online
 from shiftroute_rl.routing import Action, Router, calibrate_router, evaluate
 
 
@@ -59,6 +60,44 @@ class RouterTests(unittest.TestCase):
     def test_invalid_bounds(self):
         with self.assertRaises(ValueError):
             Router("calibrated", 0.8, 0.2)
+
+
+class SentinelTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.monitor = LinearRiskMonitor.fit(make_cases(400, 7))
+        cls.calibration = make_cases(400, 17)
+        cls.router = calibrate_router(cls.calibration, cls.monitor)
+        cls.shifted = make_cases(1000, 21, shifted=True)
+
+    def test_zero_sentinel_is_same_as_static_policy(self):
+        cases = make_cases(200, 11)
+        online = evaluate_online(cases, self.monitor, self.router, seed=1, sentinel_rate=0)
+        static = evaluate(cases, self.monitor, self.router)
+        self.assertEqual(online.metrics, static)
+
+    def test_full_sentinel_can_prevent_all_unsafe_execution(self):
+        cases = make_cases(200, 11)
+        outcome = evaluate_online(cases, self.monitor, Router("calibrated", 1.0, 1.01),
+                                  seed=1, sentinel_rate=1)
+        self.assertEqual(outcome.metrics.violations, 0)
+
+    def test_shift_alarm_reduces_unsafe_execution_at_extra_cost(self):
+        base = evaluate(self.shifted, self.monitor, self.router)
+        online = evaluate_online(self.shifted, self.monitor, self.router,
+                                 seed=7, sentinel_rate=0.10, alarm_count=3)
+        self.assertIsNotNone(online.alarm_at_case)
+        self.assertLess(online.metrics.violations, base.violations)
+        self.assertGreater(online.metrics.total_cost, base.total_cost)
+
+    def test_reproducible(self):
+        r1 = evaluate_online(self.shifted, self.monitor, self.router, seed=777)
+        r2 = evaluate_online(self.shifted, self.monitor, self.router, seed=777)
+        self.assertEqual(r1, r2)
+
+    def test_invalid_sentinel_settings(self):
+        with self.assertRaises(ValueError):
+            evaluate_online(self.shifted, self.monitor, self.router, seed=1, sentinel_rate=1.1)
 
 
 class StudyTests(unittest.TestCase):
