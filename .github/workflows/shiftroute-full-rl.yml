@@ -1,0 +1,53 @@
+name: ShiftRoute-RL full CPU training reproduction
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/shiftroute-rl-mvp-20261023
+    paths:
+      - '.github/workflows/shiftroute-full-rl.yml'
+jobs:
+  reproduce-all-seeds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Python and CPU PyTorch
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy
+          python -m pip install -e research/shiftroute-rl
+      - name: Unit tests
+        run: |
+          cd research/shiftroute-rl
+          python -m unittest discover -s tests -v
+      - name: Full three-seed training and evaluation
+        run: |
+          cd research/shiftroute-rl
+          python -m shiftroute_rl.deep_experiment --out results/cloud_full --seeds 7 13 23 --updates 200 --batch 192 --episodes 1000
+      - name: Verify output shape and finiteness
+        run: |
+          python - <<'PY'
+          import json, math
+          from pathlib import Path
+          root=Path('research/shiftroute-rl/results/cloud_full')
+          rows=json.loads((root/'evaluation.json').read_text())
+          assert len(rows)==72, len(rows)
+          assert len(list((root/'checkpoints').glob('*.pt')))==15
+          for row in rows:
+              for metric in ('true_episode_completion','attempted_violation_rate','executed_violation_rate','verification_rate','avg_verification_cost_per_action'):
+                  assert math.isfinite(row[metric]), (row,metric)
+          print('Cloud full reproducibility sanity checks passed:',len(rows),'evaluation rows, 15 weights')
+          PY
+      - name: Upload independently trained model artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shiftroute-rl-full-training-three-seeds
+          path: research/shiftroute-rl/results/cloud_full/
+          retention-days: 14
+          if-no-files-found: warn
