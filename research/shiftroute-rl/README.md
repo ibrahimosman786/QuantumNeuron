@@ -91,3 +91,17 @@ python -m shiftroute_rl.deep_experiment --out results/torch_v2 --seeds 7 13 23 -
 ```
 
 This generates PyTorch model weights, per-seed PPO learning curves, individual evaluation results and a seed-level summary. The simulated trusted capability and independent verifier are designed to establish a cost/safety *counterexample*, not to imply a deployable self-governing frontier agent. All proof and oracle assumptions are explicitly stated in the report. **The old v0.1 standard-library benchmark remains available.**
+
+
+## v0.3: policy-shift verification and trusted-proof boundary (2026-10-23)
+
+[Read the v0.3 research report](docs/research-v03.md). The extended experiment replays actions selected by previously trained SFT/PPO actors under changing policy mixtures, manipulates monitor cues, varies reviewer sensitivity and certificate soundness, and reports all cost and safety metrics. It runs **150 base comparisons + 40 certificate stress runs** and has an executed [analysis notebook](notebooks/analysis-v03.ipynb).
+
+```sh
+python -m pip install -e '.[research]'
+python -m unittest discover -s tests -v
+python -m shiftroute_rl.risk_budget_v03 --n 3600 --out results/v03/experiment.json
+python -m shiftroute_rl.proof_stress_v03 --n 3600 --out results/v03/proof_stress.json
+```
+
+**Conclusion is conditional, not a universal safety guarantee:** Sound external authorization certificates can safely skip expensive verification; confidence-only adaptive audits cannot provably match verify-all with the same safety under arbitrary adversarial label shifts. The proof issuer in the simulator can see hidden authorization truth, an assumption that may not be realizable in real deployments. The model is a small neural policy, not a pretrained LLM.
