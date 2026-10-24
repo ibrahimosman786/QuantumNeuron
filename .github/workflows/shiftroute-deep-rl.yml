@@ -25,7 +25,7 @@ jobs:
           python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
           python -m pip install numpy
           python -m pip install -e research/shiftroute-rl
-      - name: Run 25 tests
+      - name: Run PyTorch research tests
         run: |
           cd research/shiftroute-rl
           python -m unittest discover -s tests -v

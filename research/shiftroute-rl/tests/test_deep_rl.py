@@ -48,3 +48,21 @@ class DeepRLTests(unittest.TestCase):
         self.assertEqual(r['episodes'],20)
 
 if __name__=='__main__':unittest.main()
+
+
+class PolicyMonitorAuditTests(unittest.TestCase):
+    def test_monitor_audit_confusion_counts(self):
+        from shiftroute_rl.deep_monitor_audit import summarize_decisions
+        import numpy as np
+        result=summarize_decisions(np.array([.1,.95,.2,.7]),np.array([1,1,0,0]),threshold=.6)
+        self.assertEqual(result['actions'],4)
+        self.assertEqual(result['unsafe_attempts'],2)
+        self.assertAlmostEqual(result['unsafe_miss_rate_at_threshold'],.5)
+        self.assertAlmostEqual(result['legitimate_false_alarm_rate_at_threshold'],.5)
+
+    def test_monitor_audit_undefined_conditional_rates(self):
+        from shiftroute_rl.deep_monitor_audit import summarize_decisions
+        import numpy as np
+        result=summarize_decisions(np.array([.2,.3]),np.array([0,0]),threshold=.6)
+        self.assertIsNone(result['unsafe_miss_rate_at_threshold'])
+        self.assertEqual(result['unsafe_attempt_rate'],0.0)
