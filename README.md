@@ -37,23 +37,23 @@ Follow these steps to get started with **QuantumNeuron**:
 #### Installation
 ```bash
 # Clone the repository
-$ git clone https://github.com/ibrahimosman786/QuantumNeuron.git
+git clone https://github.com/ibrahimosman786/QuantumNeuron.git
 
 # Navigate to the project directory
-$ cd QuantumNeuron
+cd QuantumNeuron
 
 # Create and activate a virtual environment
-$ python3 -m venv env
-$ source env/bin/activate
+python3 -m venv env
+source env/bin/activate
 
 # Install dependencies
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 #### Usage
 ```bash
 # Run the main application
-$ python main.py
+python main.py
 ```
 
 ---
