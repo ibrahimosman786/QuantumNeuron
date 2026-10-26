@@ -37,7 +37,7 @@ Follow these steps to get started with **QuantumNeuron**:
 #### Installation
 ```bash
 # Clone the repository
-$ git clone https://github.com/YourUsername/QuantumNeuron.git
+$ git clone https://github.com/ibrahimosman786/QuantumNeuron.git
 
 # Navigate to the project directory
 $ cd QuantumNeuron
